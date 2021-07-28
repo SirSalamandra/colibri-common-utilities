@@ -1,0 +1,1 @@
+{"version":3,"file":"validations.js","sourceRoot":"","sources":["src/validations.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,IAAI,WAAW,GAAG;IACvB,cAAc,CAAC,CAAS;QACtB,OAAO,aAAa,CAAC;IACvB,CAAC;CACF,CAAA","sourcesContent":["export let validations = {\r\n  getValidations(a: string): string {\r\n    return \"validations\";\r\n  }\r\n}"]}
