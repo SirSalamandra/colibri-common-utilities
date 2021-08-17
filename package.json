@@ -1,6 +1,6 @@
 {
   "name": "colibri-common-utilities",
-  "version": "2.0.0",
+  "version": "2.0.5",
   "description": "colibri-common-utilities",
   "main": "index.js",
   "scripts": {
