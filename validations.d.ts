@@ -1,3 +1,5 @@
 export declare let validations: {
-    getValidations(a: string): string;
+    isNumeric(value: string): boolean;
+    isLetter(value: string): boolean;
+    isValidEmail(email: string): boolean;
 };
