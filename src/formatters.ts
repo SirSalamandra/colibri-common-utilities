@@ -140,14 +140,18 @@ export let formatters = {
         let valueMasked: string = "";
         let part: Array<string> = [];
         let indexToPutSeparator: number = 6 + (valueNumbers.length >= 11 ? 1 : 0);
+        
         part.push(valueNumbers.substring(0, 2));
         part.push(valueNumbers.substring(2, indexToPutSeparator));
         part.push(valueNumbers.substring(indexToPutSeparator));
-        valueMasked = "(" + part[0] + ")" + part[1] + "-" + part[2];
+
+        valueMasked = `(${part[0]}) ${part[1]}-${part[2]}`;
         valueMasked = valueMasked.slice(0, getLastNumberIndex(valueMasked) + 1);
+        
         if (valueMasked.length == 1 && !validations.isNumeric(valueMasked)) {
             return "";
         }
+
         return valueMasked;
     },
 
