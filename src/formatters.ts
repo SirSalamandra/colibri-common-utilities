@@ -27,7 +27,11 @@ export let formatters = {
 
     formatTime(time: string): string {
         let value: Array<string> = time.split(":");
-        return value[0] + ":" + value[1] + ":" + converters.getNumbers(value[2]);
+        let seconds = converters.getNumbers(value[2]);
+        if(seconds.length > 2) {
+            seconds = seconds.substring(0, 2);
+        }
+        return value[0] + ":" + value[1] + ":" + seconds;
     },
 
     formatDecimalNumber(value: number): string {
