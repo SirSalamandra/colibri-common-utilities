@@ -1,11 +1,10 @@
 {
   "name": "colibri-common-utilities",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "description": "colibri-common-utilities",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "tsc --watch"
+    "build": "tsc --watch"
   },
   "repository": {
     "type": "git",
