@@ -144,7 +144,7 @@ const Formatters = {
     part.push(valueNumbers.substring(2, indexToPutSeparator));
     part.push(valueNumbers.substring(indexToPutSeparator));
 
-    valueMasked = `(${part[0]}) ${part[1]}-${part[2]}`;
+    valueMasked = "(" + part[0] + ")" + part[1] + "-" + part[2];
     valueMasked = valueMasked.slice(0, getLastNumberIndex(valueMasked) + 1);
 
     if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked)) {
