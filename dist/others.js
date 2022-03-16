@@ -1,4 +1,4 @@
-export let others = {
+const Others = {
     duplicateList: function (list) {
         return [...list];
     },
@@ -10,7 +10,7 @@ export let others = {
     },
     getLastCharacterIndex(value, char) {
         let lastElement = 0;
-        [...others.reverseString(value)].forEach((element, index) => {
+        [...Others.reverseString(value)].forEach((element, index) => {
             if (char == element) {
                 lastElement = index;
             }
@@ -18,4 +18,5 @@ export let others = {
         return lastElement;
     }
 };
+export default Others;
 //# sourceMappingURL=others.js.map

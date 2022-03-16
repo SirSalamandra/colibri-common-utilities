@@ -1,4 +1,4 @@
-export let validations = {
+const Validations = {
 
 	isNumeric(value: string): boolean {
 		return /^\d+$/.test(value);
@@ -14,3 +14,4 @@ export let validations = {
 	},
 }
 
+export default Validations;

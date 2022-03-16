@@ -1,4 +1,4 @@
-export let converters = {
+const Converters = {
     decimalNumberFormattedToNumber(value) {
         if (value === undefined || value == "0")
             return 0;
@@ -10,4 +10,5 @@ export let converters = {
         return text.replace(/\D+/g, '');
     },
 };
+export default Converters;
 //# sourceMappingURL=converters.js.map

@@ -1,4 +1,4 @@
-export let converters = {
+const Converters = {
 
 	decimalNumberFormattedToNumber(value: string): number {
 		if(value === undefined || value == "0")
@@ -12,3 +12,5 @@ export let converters = {
 		return text.replace(/\D+/g, '');
 	},
 }
+
+export default Converters;

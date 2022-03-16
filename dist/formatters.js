@@ -1,6 +1,6 @@
-import { converters } from './converters';
-import { validations } from './validations';
-export let formatters = {
+import Converters from './converters';
+import Validations from './validations';
+const Formatters = {
     removeMask(value) {
         if (!value) {
             return value;
@@ -11,9 +11,9 @@ export let formatters = {
         });
         return value;
     },
-    formatDatetime(dateTime) {
+    formatDateTime(dateTime) {
         let value = dateTime.toString().split("T");
-        return formatters.formatDate(value[0]) + " " + formatters.formatTime(value[1]);
+        return Formatters.formatDate(value[0]) + " " + Formatters.formatTime(value[1]);
     },
     formatDate(date) {
         let value = date.split("-");
@@ -21,22 +21,22 @@ export let formatters = {
     },
     formatTime(time) {
         let value = time.split(":");
-        return value[0] + ":" + value[1] + ":" + converters.getNumbers(value[2]);
+        return value[0] + ":" + value[1] + ":" + Converters.getNumbers(value[2]);
     },
     formatDecimalNumber(value) {
         return value.toLocaleString("pt-br", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
     cpfCnpjMask(value) {
-        let valueNumber = converters.getNumbers(value);
+        let valueNumber = Converters.getNumbers(value);
         if (valueNumber.length > 11) {
-            return formatters.cnpjMask(value);
+            return Formatters.cnpjMask(value);
         }
         else {
-            return formatters.cpfMask(value);
+            return Formatters.cpfMask(value);
         }
     },
     cnpjMask(value) {
-        let valueNumber = converters.getNumbers(value);
+        let valueNumber = Converters.getNumbers(value);
         let valueMasked = "";
         let part = [];
         part.push(valueNumber.substring(0, 2));
@@ -46,13 +46,13 @@ export let formatters = {
         part.push(valueNumber.substring(12, 14));
         valueMasked = part[0] + "." + part[1] + "." + part[2] + "/" + part[3] + "-" + part[4];
         valueMasked = valueMasked.slice(0, getLastNumberIndex(valueMasked) + 1);
-        if (valueMasked.length == 1 && !validations.isNumeric(valueMasked)) {
+        if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked)) {
             return "";
         }
         return valueMasked;
     },
     cpfMask(value) {
-        let valueNumbers = converters.getNumbers(value);
+        let valueNumbers = Converters.getNumbers(value);
         let valueMasked = "";
         let part = [];
         part.push(valueNumbers.substring(0, 3));
@@ -61,7 +61,7 @@ export let formatters = {
         part.push(valueNumbers.substring(9));
         valueMasked = part[0] + "." + part[1] + "." + part[2] + "-" + part[3];
         valueMasked = valueMasked.slice(0, getLastNumberIndex(valueMasked) + 1);
-        if (valueMasked.length == 1 && !validations.isNumeric(valueMasked)) {
+        if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked)) {
             return "";
         }
         return valueMasked;
@@ -81,10 +81,10 @@ export let formatters = {
     ieRgMask(value) {
         let valueNumber = value.replace(/[^0-9xX]/g, '');
         if (valueNumber.length > 9) {
-            return formatters.ieMask(value);
+            return Formatters.ieMask(value);
         }
         else {
-            return formatters.rgMask(value);
+            return Formatters.rgMask(value);
         }
     },
     ieMask(value) {
@@ -97,13 +97,13 @@ export let formatters = {
         part.push(valueNumbers.substring(9, 12));
         valueMasked = part[0] + "." + part[1] + "." + part[2] + "." + part[3];
         valueMasked = valueMasked.slice(0, getLatestNumberIERG(valueMasked) + 1);
-        if (valueMasked.length == 1 && !validations.isNumeric(valueMasked)) {
+        if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked)) {
             return "";
         }
         return valueMasked;
     },
     rgMask(value) {
-        let allowerLetters = ["x", "X"];
+        let allowedLetters = ["x", "X"];
         let valueNumbers = value.replace(/[^0-9xX]/g, '');
         let valueMasked = "";
         let part = [];
@@ -113,13 +113,13 @@ export let formatters = {
         part.push(valueNumbers.substring(8, 9));
         valueMasked = part[0] + "." + part[1] + "." + part[2] + "-" + part[3];
         valueMasked = valueMasked.slice(0, getLatestNumberIERG(valueMasked) + 1);
-        if (valueMasked.length == 1 && !validations.isNumeric(valueMasked) && !allowerLetters.includes(valueMasked)) {
+        if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked) && !allowedLetters.includes(valueMasked)) {
             return "";
         }
         return valueMasked;
     },
     phoneMask(value) {
-        let valueNumbers = converters.getNumbers(value);
+        let valueNumbers = Converters.getNumbers(value);
         let valueMasked = "";
         let part = [];
         let indexToPutSeparator = 6 + (valueNumbers.length >= 11 ? 1 : 0);
@@ -128,20 +128,20 @@ export let formatters = {
         part.push(valueNumbers.substring(indexToPutSeparator));
         valueMasked = `(${part[0]}) ${part[1]}-${part[2]}`;
         valueMasked = valueMasked.slice(0, getLastNumberIndex(valueMasked) + 1);
-        if (valueMasked.length == 1 && !validations.isNumeric(valueMasked)) {
+        if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked)) {
             return "";
         }
         return valueMasked;
     },
     cepMask(value) {
-        let valueNumbers = converters.getNumbers(value);
+        let valueNumbers = Converters.getNumbers(value);
         let valueMasked = "";
         let part = [];
         part.push(valueNumbers.substring(0, 5));
         part.push(valueNumbers.substring(5, 8));
         valueMasked = part[0] + "-" + part[1];
         valueMasked = valueMasked.slice(0, getLastNumberIndex(valueMasked) + 1);
-        if (valueMasked.length == 1 && !validations.isNumeric(valueMasked)) {
+        if (valueMasked.length == 1 && !Validations.isNumeric(valueMasked)) {
             return "";
         }
         return valueMasked;
@@ -149,30 +149,30 @@ export let formatters = {
     licensePlateMask(text) {
         if (!text)
             return text;
-        text = formatters.removeMask(text);
+        text = Formatters.removeMask(text);
         let letters = text.substring(0, 3);
         let firstDigit = text.substring(3, 4);
         let secondDigit = text.substring(4, 5);
         let remainDigits = text.substring(5, 7);
-        if (!validations.isLetter(letters[0])) {
+        if (!Validations.isLetter(letters[0])) {
             return text.substring(0, 0).toUpperCase();
         }
-        if (!validations.isLetter(letters[1])) {
+        if (!Validations.isLetter(letters[1])) {
             return text.substring(0, 1).toUpperCase();
         }
-        if (!validations.isLetter(letters[2])) {
+        if (!Validations.isLetter(letters[2])) {
             return text.substring(0, 2).toUpperCase();
         }
-        if (!validations.isNumeric(firstDigit)) {
+        if (!Validations.isNumeric(firstDigit)) {
             return letters.toUpperCase();
         }
-        if (!validations.isLetter(secondDigit) && !validations.isNumeric(secondDigit)) {
+        if (!Validations.isLetter(secondDigit) && !Validations.isNumeric(secondDigit)) {
             return (letters + "-" + firstDigit).toUpperCase();
         }
-        if (!validations.isNumeric(remainDigits[0])) {
+        if (!Validations.isNumeric(remainDigits[0])) {
             return (letters + "-" + firstDigit + secondDigit).toUpperCase();
         }
-        else if (!validations.isNumeric(remainDigits[1])) {
+        else if (!Validations.isNumeric(remainDigits[1])) {
             return (letters + "-" + firstDigit + secondDigit + remainDigits[0].toString()).toUpperCase();
         }
         else {
@@ -181,10 +181,10 @@ export let formatters = {
     },
 };
 function getLatestNumberIERG(txt) {
-    let allowerLetters = ["x", "X"];
+    let allowedLetters = ["x", "X"];
     let lastElement = 0;
     [...txt].forEach((element, index) => {
-        if (validations.isNumeric(element) || allowerLetters.includes(element)) {
+        if (Validations.isNumeric(element) || allowedLetters.includes(element)) {
             lastElement = index;
         }
     });
@@ -193,7 +193,7 @@ function getLatestNumberIERG(txt) {
 function getLastNumberIndex(value) {
     let lastElement = 0;
     for (let i = value.length - 1; i >= 0; i--) {
-        if (validations.isNumeric(value[i].toString())) {
+        if (Validations.isNumeric(value[i].toString())) {
             lastElement = i;
             break;
         }
@@ -201,4 +201,5 @@ function getLastNumberIndex(value) {
     return lastElement;
 }
 ;
+export default Formatters;
 //# sourceMappingURL=formatters.js.map

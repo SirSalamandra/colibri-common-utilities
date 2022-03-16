@@ -1,6 +1,6 @@
-export declare let formatters: {
+declare const Formatters: {
     removeMask(value: string): string;
-    formatDatetime(dateTime: string): string;
+    formatDateTime(dateTime: string): string;
     formatDate(date: string): string;
     formatTime(time: string): string;
     formatDecimalNumber(value: number): string;
@@ -15,3 +15,5 @@ export declare let formatters: {
     cepMask(value: string): string;
     licensePlateMask(text: string): string;
 };
+export default Formatters;
+//# sourceMappingURL=formatters.d.ts.map

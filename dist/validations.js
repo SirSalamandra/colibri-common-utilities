@@ -1,4 +1,4 @@
-export let validations = {
+const Validations = {
     isNumeric(value) {
         return /^\d+$/.test(value);
     },
@@ -10,4 +10,5 @@ export let validations = {
         return regex.test(email);
     },
 };
+export default Validations;
 //# sourceMappingURL=validations.js.map
