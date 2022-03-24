@@ -1,8 +1,9 @@
-import Others from '../others';
+// import Others from '../others';
+import '../../lib/websocket.bundle.js';
 export default class NirvanaConnection {
     constructor() {
+        // Others.addDependencies('./lib/nirvana.js', 'nirvana-script');
         this.ChannelsManage = new Map();
-        Others.addDependencies('./lib/nirvana.js', 'nirvana-script');
         this.SessionManager = {
             session: null,
             successHandler: null,

@@ -1,4 +1,6 @@
-import Others from '../others';
+// import Others from '../others';
+
+import '../../lib/websocket.bundle.js';
 declare var Paho: any;
 
 export type MqttOptionsType = {
@@ -26,7 +28,7 @@ export default class MQTT {
   ClientManager: ClientManagerType;
 
   constructor() {
-    Others.addDependencies('./lib/paho-mqtt.js', 'paho-mqtt');
+    // Others.addDependencies('./lib/paho-mqtt.js', 'paho-mqtt');
 
     this.ClientManager = {
       session: null,

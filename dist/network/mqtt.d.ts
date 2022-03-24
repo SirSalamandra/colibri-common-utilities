@@ -1,3 +1,4 @@
+import '../../lib/websocket.bundle.js';
 export declare type MqttOptionsType = {
     userName: string;
     password: string;

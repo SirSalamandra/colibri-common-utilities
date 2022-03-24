@@ -1,3 +1,4 @@
+import '../../lib/websocket.bundle.js';
 declare type SessionReturnType = {
     isConnected: boolean;
     message: string;
