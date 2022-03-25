@@ -1,6 +1,5 @@
-// import Others from '../others';
-
 import '../../lib/websocket.bundle.js';
+
 declare var Paho: any;
 
 export type MqttOptionsType = {
