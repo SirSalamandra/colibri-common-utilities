@@ -44,7 +44,6 @@ const Formatters = {
   },
 
   cnpjMask(value: string): string {
-    console.log(value)
     let valueNumber = value;//Converters.getNumbers(value);
     let valueMasked: string = "";
     let part: Array<string> = [];
@@ -62,7 +61,6 @@ const Formatters = {
   },
 
   cpfMask(value: string): string {
-    console.log(value)
     let valueNumbers: string = value;//Converters.getNumbers(value);
     let valueMasked: string = "";
     let part: Array<string> = [];
