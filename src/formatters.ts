@@ -34,7 +34,7 @@ const Formatters = {
   },
 
   cpfCnpjMask(value: string): string {
-    let valueNumber: string = Converters.getNumbers(value);
+    let valueNumber: string = value;//Converters.getNumbers(value);
     if (valueNumber.length > 11) {
       return Formatters.cnpjMask(value);
     }
@@ -44,7 +44,8 @@ const Formatters = {
   },
 
   cnpjMask(value: string): string {
-    let valueNumber = Converters.getNumbers(value);
+    console.log(value)
+    let valueNumber = value;//Converters.getNumbers(value);
     let valueMasked: string = "";
     let part: Array<string> = [];
     part.push(valueNumber.substring(0, 2));
@@ -61,7 +62,8 @@ const Formatters = {
   },
 
   cpfMask(value: string): string {
-    let valueNumbers: string = Converters.getNumbers(value);
+    console.log(value)
+    let valueNumbers: string = value;//Converters.getNumbers(value);
     let valueMasked: string = "";
     let part: Array<string> = [];
     part.push(valueNumbers.substring(0, 3));
